@@ -55,7 +55,7 @@ def generate_spreadsheet_from_abstracts(abstracts, static_item_ids, dynamic_item
     :param dynamic_items: Contribution fields as extra columns
     """
 
-    field_names = ['Id', 'Title']
+    field_names = ['Id', 'Title', 'Description']
     static_item_mapping = {
         'state': ('State', lambda x: x.state.title),
         'submitter': ('Submitter', lambda x: x.submitter.full_name),
@@ -89,7 +89,8 @@ def generate_spreadsheet_from_abstracts(abstracts, static_item_ids, dynamic_item
         data = abstract.data_by_field
         abstract_dict = {
             'Id': abstract.friendly_id,
-            'Title': abstract.title
+            'Title': abstract.title,
+            'Description': abstract.description
         }
         for item in dynamic_items:
             key = unique_col(item.title, item.id)
